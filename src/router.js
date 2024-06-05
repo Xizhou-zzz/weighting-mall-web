@@ -13,6 +13,7 @@ import OrderPage from "./pages/OrderPage";
 import MarketingPage from "./pages/MarketingPage";
 import CustomPage from "./pages/CustomPage";
 import MenuService from "./service/MenuService";
+import ShoppingCartPage from "./pages/product/mall/ShoppingCartPage";
 
 const menuService = new MenuService();
 const menus = menuService.getMenus();
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         children: [
           ...customRouters,
         ],
+      },
+      // 购物车页面路由
+      {
+        path: "shoppingcart", element: <ShoppingCartPage />
       },
     ],
   },
