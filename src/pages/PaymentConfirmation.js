@@ -26,10 +26,10 @@ const PaymentConfirmation = () => {
 
             {/* 内容容器 */}
             <div>
-                <div style={{ textAlign: 'center', fontSize: '20px' }}>
+                <div style={{ textAlign: 'center', fontSize: '20px',marginTop:'30px' }}>
                     <span>xxx的商品订单</span>
                 </div>
-                <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                <div style={{ textAlign: 'center', marginBottom: '30px' }}>
                     <span style={{ fontSize: '30px', fontWeight: 'bold' }}>￥2999</span>
                 </div>
 

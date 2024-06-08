@@ -26,20 +26,20 @@ const PaymentMethod = () => {
 
       {/* 内容容器 */}
       <div>
-        <div style={{ textAlign: 'center', fontSize: '20px' }}>
+        <div style={{ textAlign: 'center', fontSize: '20px',marginTop:'30px' }}>
           <span>xxx的商品订单</span>
         </div>
-        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <span style={{ fontSize: '30px', fontWeight: 'bold' }}>￥2999</span>
         </div>
 
-        <div style={{ marginBottom: '10px' }}>
+        <div style={{ marginBottom: '15px' }}>
           <Button type="primary" block style={{  height: '40px' }}>
             打开支付宝APP付款
           </Button>
         </div>
 
-        <div style={{ marginBottom: '10px' }}>
+        <div style={{ marginBottom: '15px' }}>
           <Button block style={{ height: '40px' }} onClick={handleContinuePayment}>继续浏览器付款</Button>
         </div>
 
