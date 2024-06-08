@@ -14,6 +14,12 @@ import MarketingPage from "./pages/MarketingPage";
 import CustomPage from "./pages/CustomPage";
 import MenuService from "./service/MenuService";
 import ShoppingCartPage from "./pages/product/mall/ShoppingCartPage";
+import PaySuccess from "./pages/PaySuccess";
+import SubmitOrder from "./pages/SubmitOrder";
+import Pay from "./pages/Pay"
+import PaymentMethod  from "./pages/PaymentMethod";
+import PaymentConfirmation from "./pages/PaymentConfirmation";
+
 
 const menuService = new MenuService();
 const menus = menuService.getMenus();
@@ -51,6 +57,22 @@ const router = createBrowserRouter([
       {
         path: "shoppingcart", element: <ShoppingCartPage />
       },
+      // 支付
+      {
+        path: "paymentMethod", element: <PaymentMethod />
+      },
+      {
+        path: "paymentConfirmation",element:<PaymentConfirmation />
+      },
+      {
+        path: "paySuccess",element:<PaySuccess />
+      },
+      {
+        path: "submitOrder",element:<SubmitOrder />
+      },
+      {
+        path: "pay",element:<Pay />
+      }
     ],
   },
 ]);
