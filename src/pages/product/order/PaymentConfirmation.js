@@ -1,16 +1,16 @@
 import React from 'react';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 import { LeftOutlined, AlipayCircleOutlined, UserOutlined } from '@ant-design/icons';
 
+/* #3 */
 const PaymentConfirmation = () => {
-    let location = useLocation();
     const navigate = useNavigate();
     const handleGoBack = () => {
-      navigate('/paymentMethod');
+      navigate('/product/paymentMethod');
     };
     const toSuccessPage = () => {
-        navigate('/paySuccess');
+        navigate('/product/paySuccess');
       };
     return (
         <div>

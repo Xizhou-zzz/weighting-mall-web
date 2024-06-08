@@ -1,13 +1,13 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
-import { LeftOutlined, CheckCircleOutlined, PayCircleOutlined } from '@ant-design/icons';
+import { LeftOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
+/* #5 */
 const SubmitOrder = () => {
-    let location = useLocation();
     const navigate = useNavigate();
     const toPay = () => {
-        navigate('/pay');
+        navigate('/product/pay');
     };
 
     return (

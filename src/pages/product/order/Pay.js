@@ -1,13 +1,13 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button, Radio } from 'antd';
 import { LeftOutlined, AlipayOutlined, WechatOutlined } from '@ant-design/icons';
 
+/* #1 */
 const Pay = () => {
-    let location = useLocation();
     const navigate = useNavigate();
     const toPaymentMethod = () => {
-        navigate('/paymentMethod');
+        navigate('/product/paymentMethod');
     };
     const handleGoBack = () => {
         navigate('/submitOrder');
