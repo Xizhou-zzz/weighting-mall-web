@@ -47,12 +47,18 @@ const router = createBrowserRouter([
           ...customRouters,
         ],
       },
+      
+    ],
+  },
+  {
+    path: "/product",
+    children: [
       // 购物车页面路由
       {
         path: "shoppingcart", element: <ShoppingCartPage />
       },
-    ],
-  },
+    ]
+  }
 ]);
 
 export default router;
