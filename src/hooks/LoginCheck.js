@@ -1,33 +1,27 @@
 import { useEffect, useContext } from 'react';
-import { App } from 'antd';
+import { App } from "antd";
 import { ServiceContext } from '../contexts/ServiceContext';
 import { useNavigate } from 'react-router-dom';
 
 const useLoginCheck = () => {
-  // 使用具描述性的命名
-  const { userService } = useContext(ServiceContext);
-  const { message } = App.useApp();
-  const router = useNavigate();
+  const { user: userService } = useContext(ServiceContext);
+  const { message } = App.useApp(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // 使用异步函数以清晰地处理异步逻辑
-    const checkLoginStatus = async () => {
       try {
-        const currentUser = await userService.getCurrentUser();
-        if (!currentUser) {
+        const user = userService.getCurrentUser();
+        if (!user) {
           message.open({
-            type: 'warning',
-            content: '请先登录',
+            type: "warning",
+            content: "请先登录",
           });
-          router('/login'); // 使用更简洁的导航方式
+          navigate("/login");
         }
       } catch (error) {
-        console.error('检查登录状态出错: ', error);
+        console.error("检查登录出错: ", error);
       }
-    };
-
-    checkLoginStatus(); // 调用异步函数
-  }, [userService, message, router]); // 确保依赖项的完整性
+  })
 };
 
 export default useLoginCheck;

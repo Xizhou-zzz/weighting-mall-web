@@ -17,7 +17,7 @@ import ShoppingCartPage from "./pages/product/mall/ShoppingCartPage";
 import PaySuccess from "./pages/PaySuccess";
 import SubmitOrder from "./pages/SubmitOrder";
 import Pay from "./pages/Pay"
-import PaymentMethod  from "./pages/PaymentMethod";
+import PaymentMethod from "./pages/PaymentMethod";
 import PaymentConfirmation from "./pages/PaymentConfirmation";
 
 
@@ -53,28 +53,34 @@ const router = createBrowserRouter([
           ...customRouters,
         ],
       },
+
+    ],
+  },
+  {
+    path: "/product",
+    children: [
       // 购物车页面路由
       {
         path: "shoppingcart", element: <ShoppingCartPage />
       },
-      // 支付
-      {
-        path: "paymentMethod", element: <PaymentMethod />
-      },
-      {
-        path: "paymentConfirmation",element:<PaymentConfirmation />
-      },
-      {
-        path: "paySuccess",element:<PaySuccess />
-      },
-      {
-        path: "submitOrder",element:<SubmitOrder />
-      },
-      {
-        path: "pay",element:<Pay />
-      }
     ],
   },
+  // 支付
+  {
+    path: "paymentMethod", element: <PaymentMethod />
+  },
+  {
+    path: "paymentConfirmation", element: <PaymentConfirmation />
+  },
+  {
+    path: "paySuccess", element: <PaySuccess />
+  },
+  {
+    path: "submitOrder", element: <SubmitOrder />
+  },
+  {
+    path: "pay", element: <Pay />
+  }
 ]);
 
 export default router;

@@ -55,7 +55,7 @@ const LoginPage = () => {
       onFinish={onFinish}
       autoComplete="off"
     >
-      <Alert message="XZ-MALL-WEB" type="info" style={{marginBottom: 32, textAlign: "center"}}/>
+      <Alert message="Weighting-MALL-WEB" type="info" style={{marginBottom: 32, textAlign: "center"}}/>
         <Form.Item
             label="用户名"
             name="username"
