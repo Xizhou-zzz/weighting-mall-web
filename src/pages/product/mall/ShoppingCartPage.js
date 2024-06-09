@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Menu, Card, Button, Image, InputNumber, Checkbox } from "antd";
 import { AppstoreOutlined, HomeOutlined, ShoppingCartOutlined, UserOutlined, DeleteOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 const ShoppingCartPage = () => {
+  const navigate = useNavigate();
   // 页面最下方菜单栏数据
   const menuItems = [
     {
@@ -46,6 +48,16 @@ const ShoppingCartPage = () => {
       quantity: 1,
       image: '/secondshoe.jpg',
       isChecked: true,
+    },
+    {
+      id: 3,
+      name: 'Apple/苹果 iPhone 15',
+      description: '蓝色',
+      price: 4899,
+      quantity: 1,
+      image: 'https://picture.gptkong.com/20240609/2328f4bafbade14502aa3d6f012723383c.jpg',
+      isChecked: true,
+      originalPrice: "￥5999",
     }
   ]);
   // 删除购物车项的函数
@@ -67,6 +79,13 @@ const ShoppingCartPage = () => {
   // 格式化输入，只允许输入正整数和0
   const formatNumber = (value) => {
     return String(value).replace(/[^0-9]/g, '');
+  };
+
+  // 去结算按钮的函数
+  const goToCheckout = () => {
+    const selectedItems = cartItems.filter(item => item.isChecked);
+    navigate("/CreateOrder", { state: { selectedItems } });
+    // navigate("/CreateOrder");
   };
 
   return (
@@ -95,8 +114,8 @@ const ShoppingCartPage = () => {
         <Card className="cardStyle">
           <div className="cardContainer">
             <Button type="primary" danger className="redButtonStyle" onClick={clearItem}>清空</Button>
-            <div>￥{cartItems.filter(item => item.isChecked).reduce((total, item) => total + item.price * item.quantity, 0)}元</div>
-            <Button type="primary" className="blueButtonStyle">去结算</Button>
+            <div>￥{cartItems.filter(item => item.isChecked).reduce((total, item) => total + item.price * item.quantity, 0)}</div>
+            <Button type="primary" className="blueButtonStyle" onClick={goToCheckout}>去结算</Button>
           </div>
         </Card>
 

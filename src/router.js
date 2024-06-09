@@ -23,6 +23,9 @@ import PaymentMethod from "./pages/product/order/PaymentMethod";
 import PaymentConfirmation from "./pages/product/order/PaymentConfirmation";
 
 
+import ProductDetail from "./pages/product/order/ProductDetail";
+import CreateOrder from "./pages/product/order/CreateOrder";
+import OrderDetail from "./pages/product/order/OrderDetail";
 
 const menuService = new MenuService();
 const menus = menuService.getMenus();
@@ -62,7 +65,7 @@ const router = createBrowserRouter([
   {
     path: "/product",
     children: [
-      // 购物车页面路由
+      //购物车页面路由
       { path: "shoppingcart", element: <ShoppingCartPage /> },
       // “我的”页面路由
       { path: "personalinformation", element: <PersonalInformationPage /> },
@@ -74,14 +77,21 @@ const router = createBrowserRouter([
       { path: "paySuccess", element: <PaySuccess /> },
       { path: "submitOrder", element: <SubmitOrder /> },
       { path: "pay", element: <Pay /> }
+
     ],
   },
-  // 支付
-
-
-
-
-
+  //商品详情页页面路由
+  {
+    path: "ProductDetail", element: <ProductDetail />
+  },
+  //创建订单页面路由
+  {
+    path: "CreateOrder", element: <CreateOrder />
+  },
+  //订单详情页面路由
+  {
+    path: "OrderDetail", element: <OrderDetail />
+  },
 ]);
 
 export default router;
