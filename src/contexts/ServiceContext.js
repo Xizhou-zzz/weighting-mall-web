@@ -2,6 +2,7 @@ import React, { createContext, useMemo } from 'react';
 import UserService from '../service/UserService';
 import MenuService from '../service/MenuService';
 import RoleService from '../service/RoleService';
+import OrderService from '../service/OrderService';
 
 // 创建一个上下文对象
 const ServiceContext = createContext();
@@ -14,6 +15,7 @@ const ServiceProvider = ({ children }) => {
       user: new UserService(),
       menu: new MenuService(),
       role: new RoleService(),
+      order: new OrderService(),
     }
   }, []);
 
