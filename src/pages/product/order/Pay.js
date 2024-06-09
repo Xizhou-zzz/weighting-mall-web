@@ -10,14 +10,14 @@ const Pay = () => {
         navigate('/product/paymentMethod');
     };
     const handleGoBack = () => {
-        navigate('/submitOrder');
-      };
+        navigate('/product/submitOrder');
+    };
     return (
         <div>
             {/* 头部容器，应用Flexbox布局 */}
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 {/* 左侧的图标 */}
-                <LeftOutlined onClick={handleGoBack}/>
+                <LeftOutlined onClick={handleGoBack} />
                 <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
                     <h1 style={{ fontSize: '24px', margin: '0 0 0 8px' }}>支付</h1>
                 </div>
@@ -48,14 +48,14 @@ const Pay = () => {
                         </span>
                         <Radio value={2}></Radio>
                     </div>
-            </Radio.Group>
-            <div style={{ marginBottom: '10px' }}>
-                <Button block style={{ height: '40px', backgroundColor: 'red', color: 'white' }} onClick={toPaymentMethod}>
-                    确认支付
-                </Button>
-            </div>
+                </Radio.Group>
+                <div style={{ marginBottom: '10px' }}>
+                    <Button block style={{ height: '40px', backgroundColor: 'red', color: 'white' }} onClick={toPaymentMethod}>
+                        确认支付
+                    </Button>
+                </div>
 
-        </div>
+            </div>
         </div >
     );
 };

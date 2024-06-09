@@ -14,6 +14,7 @@ import MarketingPage from "./pages/MarketingPage";
 import CustomPage from "./pages/CustomPage";
 import MenuService from "./service/MenuService";
 import ShoppingCartPage from "./pages/product/mall/ShoppingCartPage";
+import PersonalInformationPage from "./pages/product/mall/PersonalInformationPage";
 import PaySuccess from "./pages/product/order/PaySuccess";
 import SubmitOrder from "./pages/product/order/SubmitOrder";
 import Pay from "./pages/product/order/Pay"
@@ -61,6 +62,8 @@ const router = createBrowserRouter([
     children: [
       // 购物车页面路由
       { path: "shoppingcart", element: <ShoppingCartPage /> },
+      // “我的”页面路由
+      { path: "personalinformation", element: <PersonalInformationPage /> },
       { path: "paymentMethod", element: <PaymentMethod /> },
       { path: "paymentConfirmation", element: <PaymentConfirmation /> },
       { path: "paySuccess", element: <PaySuccess /> },
@@ -70,10 +73,10 @@ const router = createBrowserRouter([
   },
   // 支付
 
-  
-  
-  
-  
+
+
+
+
 ]);
 
 export default router;
