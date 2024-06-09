@@ -299,27 +299,48 @@ const StyledLink = styled(Link)`
 
 const CreateOrderPage = () => {
   const location = useLocation();
-  const [product, setProduct] = useState(null);
-  const [selectedColor, setSelectedColor] = useState(null);
+  // const [product, setProduct] = useState(null);
+  // const [selectedColor, setSelectedColor] = useState(null);
+
+  //问题：useEffect在location.search为空的时候执行，非空反而不会执行，遂注释useEffect。
+  //注释了useEffect后两个set函数不执行，于是尝试直接赋值给product和selectedColor
+  //但是常量不能被变量赋值，所以把而这换成了let
+  //这种做法可能有隐患，但目前不知道为什么不执行，待优化
+  let product;
+  let selectedColor;
   const selectedItems = location.state?.selectedItems || [];
 
-  console.log(selectedItems);
+  //console.log("selectedItems: ", selectedItems);
+  //console.log("location.search: ", location.search);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const productInfo = searchParams.get("productInfo");
 
-    if (productInfo) {
-      const parsedProductInfo = JSON.parse(decodeURIComponent(productInfo));
-      // console.log(parsedProductInfo);
-      setProduct(parsedProductInfo.product);
-      setSelectedColor(parsedProductInfo.selectedColor.target.value);
-    }
-  }, [location.search]);
+  //useEffect(() => {
+  //console.log("location.search: ", location.search);
+  const searchParams = new URLSearchParams(location.search);
+  const productInfo = searchParams.get("productInfo");
+
+
+  //console.log("productInfo: ", productInfo);
+
+
+  if (productInfo) {
+    const parsedProductInfo = JSON.parse(decodeURIComponent(productInfo));
+    console.log(parsedProductInfo);
+    // setProduct(parsedProductInfo.product);
+    // setSelectedColor(parsedProductInfo.selectedColor.target.value);
+    product = parsedProductInfo.product;
+    selectedColor = parsedProductInfo.selectedColor.target.value;
+  }
+  //  }, [location.search]
+  //);
+
+
 
   // if (!product) {
   //   return null;
   // }
+
+  console.log("product: ", product, "selectedColor: ", selectedColor);
 
   const handleBack = () => {
     // 返回上一页

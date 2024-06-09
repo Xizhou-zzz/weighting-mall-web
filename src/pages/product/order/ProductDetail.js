@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { Image, Button, Drawer, Radio, message, Carousel } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartOutlined, HomeOutlined, ShoppingOutlined } from "@ant-design/icons";
 
 const ProductDetailContainer = styled.div`
@@ -120,6 +120,7 @@ const ColorOption = styled(Radio.Button)`
 `;
 
 const ProductDetail = () => {
+    const navigate = useNavigate();
     const [isDrawerVisible, setIsDrawerVisible] = useState(false);
     const [selectedColor, setSelectedColor] = useState(null);
     const [isBuying, setIsBuying] = useState(false);
@@ -162,6 +163,7 @@ const ProductDetail = () => {
                 const productInfo = { product: product, selectedColor: selectedColor };
                 // 使用 window.location.href 跳转，并将商品信息和选定颜色编码为 URL 参数
                 window.location.href = `/CreateOrder?productInfo=${encodeURIComponent(JSON.stringify(productInfo))}`;
+                //navigate("/CreateOrder", { state: { productInfo } });
 
             } else {
                 // 提示成功添加至购物车
