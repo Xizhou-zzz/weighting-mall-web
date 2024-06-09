@@ -59,46 +59,6 @@ const defaultMenuList = [
       enable: true,
       locked: true,
     },
-    // {
-    //   id: 16,
-    //   name: "提交订单",
-    //   path: "submitOrder",
-    //   parent: 3,
-    //   enable: true,
-    //   locked: true,
-    // },
-    // {
-    //   id: 17,
-    //   name: "支付",
-    //   path: "pay",
-    //   parent: 3,
-    //   enable: true,
-    //   locked: true,
-    // },
-    // {
-    //   id: 18,
-    //   name: "支付方式",
-    //   path: "paymentMethod",
-    //   parent: 3,
-    //   enable: true,
-    //   locked: true,
-    // },
-    // {
-    //   id: 19,
-    //   name: "确认付款",
-    //   path: "paymentConfirmation",
-    //   parent: 3,
-    //   enable: true,
-    //   locked: true,
-    // },
-    // {
-    //   id: 20,
-    //   name: "支付成功",
-    //   path: "paySuccess",
-    //   parent: 3,
-    //   enable: true,
-    //   locked: true,
-    // }
   ];
   
   class MenuService {
