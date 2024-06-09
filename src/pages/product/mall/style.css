@@ -6,6 +6,7 @@
 
 .content {
   flex: 1;
+  overflow-y: auto;
 }
 
 .bottom-menu {
@@ -51,4 +52,9 @@
 
 .redButtonStyle {
   left: -20%;
+}
+
+.buttonPosition {
+  position: relative;
+  left: 80%;
 }
