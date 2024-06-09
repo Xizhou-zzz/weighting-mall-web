@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Menu, Card, Button, Avatar, Divider } from "antd";
 import { AppstoreOutlined, HomeOutlined, ShoppingCartOutlined, UserOutlined, MessageOutlined, SettingOutlined, ProfileOutlined, MoneyCollectOutlined, TruckOutlined, TransactionOutlined, EnvironmentOutlined, RightOutlined, HeartOutlined, StarOutlined, CommentOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 const PersonalInformationPage = () => {
@@ -27,6 +28,12 @@ const PersonalInformationPage = () => {
       icon: <UserOutlined />,
     },
   ];
+  // 钩子函数，用于页面跳转
+  const navigate = useNavigate();
+  // 点击我的订单跳转到订单管理页面
+  const toOrderManagement = () => {
+    navigate('/product/ordermanagement');
+  }
 
   return (
     <div className="shopping-cart-page">
@@ -62,7 +69,7 @@ const PersonalInformationPage = () => {
 
         <Card style={{ position: 'relative', top: '-3%', width: '94%', left: '3%' }}>
           <div style={{ display: 'flex' }}>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div onClick={toOrderManagement} style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <ProfileOutlined />
               <p>全部订单</p>
             </div>

@@ -15,11 +15,13 @@ import CustomPage from "./pages/CustomPage";
 import MenuService from "./service/MenuService";
 import ShoppingCartPage from "./pages/product/mall/ShoppingCartPage";
 import PersonalInformationPage from "./pages/product/mall/PersonalInformationPage";
+import OrderManagementPage from "./pages/product/mall/OrderManagementPage";
 import PaySuccess from "./pages/product/order/PaySuccess";
 import SubmitOrder from "./pages/product/order/SubmitOrder";
 import Pay from "./pages/product/order/Pay"
 import PaymentMethod from "./pages/product/order/PaymentMethod";
 import PaymentConfirmation from "./pages/product/order/PaymentConfirmation";
+
 
 
 const menuService = new MenuService();
@@ -64,6 +66,9 @@ const router = createBrowserRouter([
       { path: "shoppingcart", element: <ShoppingCartPage /> },
       // “我的”页面路由
       { path: "personalinformation", element: <PersonalInformationPage /> },
+      // 订单管理页面路由
+      { path: "ordermanagement", element: <OrderManagementPage /> },
+
       { path: "paymentMethod", element: <PaymentMethod /> },
       { path: "paymentConfirmation", element: <PaymentConfirmation /> },
       { path: "paySuccess", element: <PaySuccess /> },
