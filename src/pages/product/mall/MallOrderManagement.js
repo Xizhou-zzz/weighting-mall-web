@@ -1,32 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { Button, Divider, Input, Card, Image, Dropdown } from "antd";
+import { Button, Divider, Input, Card, Image, Modal } from "antd";
 import { LeftOutlined, SearchOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import OrderService from '../../../service/OrderService';
 
 const MallOrderManagement = () => {
-  const items = [
-    {
-      key: '1',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          卖了换钱
-        </a>
-      ),
-    },
-    {
-      key: '2',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-          删除订单
-        </a>
-      ),
-    },
-  ];
+  // 处理删除订单的逻辑
+  const showDeleteConfirm = (orderId) => {
+    // 保存该订单的id
+    setCurrentOrderId(orderId);
+    // 显示对话框
+    setIsModalVisible(true);
+  }
+  // 对话框点击确认的处理逻辑
+  const handleOk = async () => {
+    // 这里只在页面中删除订单，没有触及存储
+    // await orderService.deleteOrder(currentOrderId);
+    setOrderItems(orderItems.filter(order => order.id !== currentOrderId));
+    setIsModalVisible(false);
+  }
+  // 对话框点击取消的处理逻辑
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  }
+
+
+
   // 创建 OrderService 的实例
   const orderService = new OrderService();
-  // 使用orderService中的getOrders()方法来获取订单数据
-  // const orderData = orderService.getOrders();
   // 储存订单数据
   const [orderItems, setOrderItems] = useState([])
   // 这个变量存储搜索订单输入框中输入的内容
@@ -62,6 +63,11 @@ const MallOrderManagement = () => {
     };
     fetchData();
   }, [])
+  // 控制确认对话框是否的可见的变量
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  // 存储即将删除的订单Id
+  const [currentOrderId, setCurrentOrderId] = useState(null);
+
 
   return (
     <div>
@@ -89,20 +95,21 @@ const MallOrderManagement = () => {
             </div>
           </div>
           <div style={{ marginLeft: '-7%' }}>
-            <Dropdown
-              menu={{
-                items,
-              }}
-              arrow
-            >
-              <Button type="text" width={1} style={{ color: 'gray' }}>更多</Button>
-            </Dropdown>
+            <Button danger onClick={() => showDeleteConfirm(item.id)}>删除订单</Button>
             <Button>追加评价</Button>
-            <Button>查看物流</Button>
             <Button type="primary">再买一单</Button>
           </div>
         </Card>
       ))}
+      {/* 是否确认删除订单信息的对话框 */}
+      <Modal
+        title="删除订单"
+        open={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>确定要删除该订单吗？删除后不可恢复。</p>
+      </Modal>
     </div>
   );
 };
