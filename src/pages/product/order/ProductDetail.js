@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Image, Button, Drawer, Radio, message, Carousel } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartOutlined, HomeOutlined, ShoppingOutlined } from "@ant-design/icons";
+import OrderService from '../../../service/OrderService'; // 确保路径正确
+
 
 const ProductDetailContainer = styled.div`
   padding: 16px;
@@ -166,6 +168,21 @@ const ProductDetail = () => {
                 // 使用 window.location.href 跳转，并将商品信息和选定颜色编码为 URL 参数
                 window.location.href = `/product/CreateOrder?productInfo=${encodeURIComponent(JSON.stringify(productInfo))}`;
                 //navigate("/CreateOrder", { state: { productInfo } });
+
+                const orderService = new OrderService();
+                const newOrder = {
+                    productName: product.name,
+                    customerName: 'Customer1', // 这里需要替换为实际的客户名
+                    price: product.price,
+                    amount: 1,
+                    status: 0,
+                    storeName: 'Apple Store',
+                    image: product.images[selectedColor],
+                    selectedColor,
+                };
+                const order = orderService.addNewOrder(newOrder);
+                message.success("订单已创建");
+
             } else {
                 // 提示成功添加至购物车
                 message.success("成功添加至购物车");
