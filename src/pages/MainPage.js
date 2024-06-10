@@ -6,6 +6,7 @@ import SideMenu from "../components/SideMenu";
 const { Content, Sider } = Layout;
 
 const MainPage = () => {
+  localStorage.clear();
   useLoginCheck();
   return (
     <Layout>

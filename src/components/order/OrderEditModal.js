@@ -7,7 +7,7 @@ const OrderEditModal = ({ open, onCreate, onCancel, initialValues }) => {
     const orderService = new OrderService();  // 创建 OrderService 的实例
 
     const handleCreate = (values) => { 
-        values.status = values.status ? 0 : 1;
+        values.status = values.status ? 1 : 0;
         const newOrder = orderService.addNewOrder(values);
         onCreate(newOrder);
         form.resetFields();
@@ -71,6 +71,7 @@ const OrderEditModal = ({ open, onCreate, onCancel, initialValues }) => {
                 <Form.Item
                     name="status"
                     label="发货状态"
+                    valuePropName="checked" 
                 >
                     <Checkbox>已发货</Checkbox>
                 </Form.Item>

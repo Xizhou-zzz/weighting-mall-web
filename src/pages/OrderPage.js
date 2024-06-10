@@ -12,7 +12,6 @@ const OrderPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        localStorage.clear();
         setOrders(order.getOrders());
     }, [order]);
 
