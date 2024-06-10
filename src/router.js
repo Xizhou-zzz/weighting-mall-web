@@ -37,7 +37,7 @@ import ProductBrandList from "./pages/product/mall/productBrandList"//by ly
 import ProductDetail1 from "./pages/product/mall/productDetail" //by ly 这是我写重复的要改一下
 
 import MallUser from "./pages/product/mall/mallUser";
-import MallOrderManagement from "./pages/product/mall/MallOrderManagement";
+import MallOrderManagement from "./pages/product/mall/mallOrderManagement";
 
 const menuService = new MenuService();
 const menus = menuService.getMenus();
