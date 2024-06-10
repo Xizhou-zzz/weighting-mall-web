@@ -13,9 +13,7 @@ import OrderPage from "./pages/OrderPage";
 import MarketingPage from "./pages/MarketingPage";
 import CustomPage from "./pages/CustomPage";
 import MenuService from "./service/MenuService";
-import ShoppingCartPage from "./pages/product/mall/ShoppingCartPage";
-import PersonalInformationPage from "./pages/product/mall/PersonalInformationPage";
-import OrderManagementPage from "./pages/product/mall/OrderManagementPage";
+
 import PaySuccess from "./pages/product/order/PaySuccess";
 import SubmitOrder from "./pages/product/order/SubmitOrder";
 import Pay from "./pages/product/order/Pay"
@@ -37,6 +35,9 @@ import ProductList from "./pages/product/mall/productList"//by ly
 import ProductGenreList from "./pages/product/mall/productGenreList"//by ly
 import ProductBrandList from "./pages/product/mall/productBrandList"//by ly
 import ProductDetail1 from "./pages/product/mall/productDetail" //by ly 这是我写重复的要改一下
+
+import MallUser from "./pages/product/mall/mallUser";
+import MallOrderManagement from "./pages/product/mall/MallOrderManagement";
 
 const menuService = new MenuService();
 const menus = menuService.getMenus();
@@ -76,13 +77,6 @@ const router = createBrowserRouter([
   {
     path: "/product",
     children: [
-      //购物车页面路由
-      { path: "shoppingcart", element: <ShoppingCartPage /> },
-      // “我的”页面路由
-      { path: "personalinformation", element: <PersonalInformationPage /> },
-      // 订单管理页面路由
-      { path: "ordermanagement", element: <OrderManagementPage /> },
-
       { path: "paymentMethod", element: <PaymentMethod /> },
       { path: "paymentConfirmation", element: <PaymentConfirmation /> },
       { path: "paySuccess", element: <PaySuccess /> },
@@ -96,37 +90,39 @@ const router = createBrowserRouter([
       { path: "OrderDetail", element: <OrderDetail /> },
     ],
   },
-    //下面是ly加的
+  //下面是ly加的
   { path: 'productDetail/:id', element: <ProductDetail1 /> },
+
   {
     path: 'mall',
     element: <Mall />,
     children: [
       { path: 'mallHome', element: <MallHome /> },
 
-      { path: 'mallGenre', element: <MallGenre /> ,
+      {
+        path: 'mallGenre', element: <MallGenre />,
         children: [
           { path: 'clothes', element: <MallGenreChildren /> },
           { path: 'phone', element: <MallGenreChildren /> },
           { path: 'appliances', element: <MallGenreChildren /> },
           { path: 'decoration', element: <MallGenreChildren /> },
-          { path: 'car', element: <MallGenreChildren/> },
+          { path: 'car', element: <MallGenreChildren /> },
           { path: 'computer', element: <MallGenreChildren /> },
         ]
-
       },
       { path: 'mallShoppingCar', element: <MallShoppingCar /> },
+      { path: 'mallUser', element: <MallUser /> },
+      { path: 'mallOrderManagement', element: <MallOrderManagement /> },
       { path: 'brandList', element: <BrandList /> },
       { path: 'productList/:id', element: <ProductList /> },
       { path: 'productGenreList/:id', element: <ProductGenreList /> },
       { path: 'productBrandList/:id', element: <ProductBrandList /> },
-
     ]
   },
-  
 
-  
-  
+
+
+
 ]);
 
 export default router;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Divider, Input, Card, Image, Dropdown } from "antd";
 import { LeftOutlined, SearchOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-const OrderManagementPage = () => {
+const MallOrderManagement = () => {
   const items = [
     {
       key: '1',
@@ -49,7 +49,7 @@ const OrderManagementPage = () => {
   const navigate = useNavigate();
   // 返回按钮的处理函数，返回个人信息页面
   const returnToPersonalInformation = () => {
-    navigate('/product/personalinformation');
+    navigate('/mall/mallUser');
   }
   // 处理搜索订单输入框中内容变化的函数
   const handleSearchChange = (e) => {
@@ -104,4 +104,4 @@ const OrderManagementPage = () => {
     </div>
   );
 };
-export default OrderManagementPage;
+export default MallOrderManagement;

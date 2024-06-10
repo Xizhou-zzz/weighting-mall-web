@@ -1,30 +1,30 @@
 //商城的根目录 //by ly
-import { Outlet ,useNavigate} from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import React, { useContext, useEffect } from 'react';
-import { MenuOutlined , NotificationOutlined, UserOutlined, HomeOutlined,CloseOutlined  } from '@ant-design/icons';
+import { MenuOutlined, UserOutlined, HomeOutlined, ShoppingCartOutlined, } from '@ant-design/icons';
 const { Header, Content, Footer, Sider } = Layout;
 
 let menuItem = [
     {
         key: `mallHome`,
-        icon: React.createElement(HomeOutlined),
+        icon: <HomeOutlined />,
         label: `首页`,
     },
     {
         key: `mallGenre`,
-        icon: React.createElement(MenuOutlined),
+        icon: <MenuOutlined />,
         label: `分类`,
     },
     {
         key: `mallShoppingCar`,
-        icon: React.createElement(NotificationOutlined),
+        icon: <ShoppingCartOutlined />,
         label: `购物车`,
 
     },
     {
         key: `mallUser`,
-        icon: React.createElement(UserOutlined),
+        icon: <UserOutlined />,
         label: `我的`,
     },
 ];
@@ -47,14 +47,14 @@ export default function Mall() {
                         <Content style={{ flex: 1, paddingBottom: '60px' }}>
                             <Outlet />
                         </Content>
-                        <Footer style={{ height:'9%', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%', padding: 0 }}>
+                        <Footer style={{ height: '9%', textAlign: 'center', position: 'fixed', bottom: 0, width: '100%', padding: 0 }}>
                             <Menu
                                 mode="horizontal"
                                 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                                 items={menuItem.map(item => ({
                                     ...item,
                                     label: (
-                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',marginTop:'-20px' }}>
+                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '-20px' }}>
                                             {/*{item.icon}*/}
                                             <span>{item.label}</span>
                                         </div>

@@ -1,44 +1,15 @@
 import React from "react";
-import { Menu, Card, Button, Avatar, Divider } from "antd";
-import { AppstoreOutlined, HomeOutlined, ShoppingCartOutlined, UserOutlined, MessageOutlined, SettingOutlined, ProfileOutlined, MoneyCollectOutlined, TruckOutlined, TransactionOutlined, EnvironmentOutlined, RightOutlined, HeartOutlined, StarOutlined, CommentOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { Card, Button, Avatar, Divider } from "antd";
+import { MessageOutlined, SettingOutlined, ProfileOutlined, MoneyCollectOutlined, TruckOutlined, TransactionOutlined, EnvironmentOutlined, RightOutlined, HeartOutlined, StarOutlined, CommentOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
+const MallUser = () => {
 
-const PersonalInformationPage = () => {
-  // 页面最下方菜单栏数据
-  const menuItems = [
-    {
-      label: '首页',
-      key: 'homepage',
-      icon: <HomeOutlined />,
-    },
-    {
-      label: '分类',
-      key: 'classification',
-      icon: <AppstoreOutlined />,
-    },
-    {
-      label: '购物车',
-      key: 'shoppingcart',
-      icon: <ShoppingCartOutlined />,
-    },
-    {
-      label: '我的',
-      key: 'personalinformation',
-      icon: <UserOutlined />,
-    },
-  ];
-  // 处理菜单点击事件,首页和分类页面同理
-  const onMenuClick = (e) => {
-    if (e.key === 'shoppingcart') {
-      navigate('/product/shoppingcart');
-    }
-  };
   // 钩子函数，用于页面跳转
   const navigate = useNavigate();
   // 点击我的订单跳转到订单管理页面
   const toOrderManagement = () => {
-    navigate('/product/ordermanagement');
+    navigate('/mall/mallOrderManagement');
   }
 
   return (
@@ -127,10 +98,8 @@ const PersonalInformationPage = () => {
           <Divider />
         </Card>
       </div>
-
-      <Menu items={menuItems} defaultSelectedKeys={['personalinformation']} mode="horizontal" className="bottom-menu" onClick={onMenuClick} />
     </div>
   );
-};
 
-export default PersonalInformationPage;
+}
+export default MallUser;
