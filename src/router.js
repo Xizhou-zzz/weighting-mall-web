@@ -27,6 +27,17 @@ import ProductDetail from "./pages/product/order/ProductDetail";
 import CreateOrder from "./pages/product/order/CreateOrder";
 import OrderDetail from "./pages/product/order/OrderDetail";
 
+import MallHome from "./pages/product/mall/mallHome";//by ly
+import MallGenre from "./pages/product/mall/mallGenre";//by ly
+import MallGenreChildren from "./pages/product/mall/MallGenreChildren";//by ly
+import MallShoppingCar from "./pages/product/mall/mallShoppingCar";//by ly
+import BrandList from "./pages/product/mall/brandList"//by ly
+import Mall from "./pages/product/mall/mall";//by ly
+import ProductList from "./pages/product/mall/productList"//by ly
+import ProductGenreList from "./pages/product/mall/productGenreList"//by ly
+import ProductBrandList from "./pages/product/mall/productBrandList"//by ly
+import ProductDetail1 from "./pages/product/mall/productDetail" //by ly 这是我写重复的要改一下
+
 const menuService = new MenuService();
 const menus = menuService.getMenus();
 
@@ -84,6 +95,33 @@ const router = createBrowserRouter([
       //订单详情页面路由
       { path: "OrderDetail", element: <OrderDetail /> },
     ],
+  },
+    //下面是ly加的
+  { path: 'productDetail/:id', element: <ProductDetail1 /> },
+  {
+    path: 'mall',
+    element: <Mall />,
+    children: [
+      { path: 'mallHome', element: <MallHome /> },
+
+      { path: 'mallGenre', element: <MallGenre /> ,
+        children: [
+          { path: 'clothes', element: <MallGenreChildren /> },
+          { path: 'phone', element: <MallGenreChildren /> },
+          { path: 'appliances', element: <MallGenreChildren /> },
+          { path: 'decoration', element: <MallGenreChildren /> },
+          { path: 'car', element: <MallGenreChildren/> },
+          { path: 'computer', element: <MallGenreChildren /> },
+        ]
+
+      },
+      { path: 'mallShoppingCar', element: <MallShoppingCar /> },
+      { path: 'brandList', element: <BrandList /> },
+      { path: 'productList/:id', element: <ProductList /> },
+      { path: 'productGenreList/:id', element: <ProductGenreList /> },
+      { path: 'productBrandList/:id', element: <ProductBrandList /> },
+
+    ]
   },
   
 
