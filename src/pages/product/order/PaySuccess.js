@@ -1,13 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 import { AlipayCircleOutlined } from '@ant-design/icons';
 
 /* #4 */
 const PaySuccess = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const searchParams = new URLSearchParams();
+    const price = searchParams.get('price'); 
     const toSubmitOrder = () => {
-        navigate('/product/submitOrder');
+        navigate(`/product/submitOrder?price=${price}`);
     };
 
     return (
@@ -26,7 +30,7 @@ const PaySuccess = () => {
                     <span style={{ fontSize: '15px', color: 'blue' }}>支付成功</span>
                 </div>
                 <div style={{ textAlign: 'center', marginBottom: '500px' }}>
-                    <span style={{ fontSize: '30px', fontWeight: 'bold' }}>￥2999.00元</span>
+                    <span style={{ fontSize: '30px', fontWeight: 'bold' }}>￥{price}元</span>
                 </div>
 
 

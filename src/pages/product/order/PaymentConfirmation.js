@@ -1,16 +1,21 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { Button } from 'antd';
 import { LeftOutlined, AlipayCircleOutlined, UserOutlined } from '@ant-design/icons';
 
 /* #3 */
 const PaymentConfirmation = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const searchParams =new URLSearchParams(location.search);
+    const price = searchParams.get('price');
+
     const handleGoBack = () => {
-      navigate('/product/paymentMethod');
+      navigate(`/product/paymentMethod?price=${price}`);
     };
     const toSuccessPage = () => {
-        navigate('/product/paySuccess');
+        navigate(`/product/paySuccess?price=${price}`);
       };
     return (
         <div>
@@ -30,7 +35,7 @@ const PaymentConfirmation = () => {
                     <span>xxx的商品订单</span>
                 </div>
                 <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-                    <span style={{ fontSize: '30px', fontWeight: 'bold' }}>￥2999</span>
+                    <span style={{ fontSize: '30px', fontWeight: 'bold' }}>￥{price}</span>
                 </div>
 
                 <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between' }}>

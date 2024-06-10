@@ -1,16 +1,21 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation  } from 'react-router-dom';
 import { Button, Radio } from 'antd';
 import { LeftOutlined, AlipayOutlined, WechatOutlined } from '@ant-design/icons';
 
 /* #1 */
 const Pay = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    // 从URL中获取price参数
+    const searchParams = new URLSearchParams(location.search);
+    const price = searchParams.get('price') || '0'; // 如果没有price参数，默认为0
+
     const toPaymentMethod = () => {
-        navigate('/product/paymentMethod');
+        navigate(`/product/paymentMethod?price=${price}`);
     };
     const handleGoBack = () => {
-        navigate('/product/submitOrder');
+        navigate(`/product/submitOrder?price=${price}`);
     };
     return (
         <div>
@@ -29,7 +34,7 @@ const Pay = () => {
                     <span>支付金额</span>
                 </div>
                 <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-                    <span style={{ fontSize: '30px', fontWeight: 'bold' }}>￥2799</span>
+                    <span style={{ fontSize: '30px', fontWeight: 'bold' }}>￥{price}</span>
                 </div>
 
                 <Radio.Group name="radiogroup" defaultValue={1} style={{ width: '100%' }}>
