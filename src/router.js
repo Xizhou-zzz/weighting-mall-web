@@ -119,10 +119,6 @@ const router = createBrowserRouter([
       { path: 'productBrandList/:id', element: <ProductBrandList /> },
     ]
   },
-
-
-
-
 ]);
 
 export default router;
