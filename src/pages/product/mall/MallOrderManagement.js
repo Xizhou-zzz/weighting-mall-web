@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Divider, Input, Card, Image, Dropdown } from "antd";
 import { LeftOutlined, SearchOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import OrderService from '../../../service/OrderService';
+
 const MallOrderManagement = () => {
   const items = [
     {
@@ -21,28 +23,12 @@ const MallOrderManagement = () => {
       ),
     },
   ];
-  const [orderItems] = useState([
-    {
-      id: 1,                      
-      storeName: '自由公园外贸',
-      orderState: '交易成功',
-      productName: '古着复古90S老货库存宽松廓...',
-      productDescription: '复古蓝[色差、微瑕]；M',
-      productNumber: 1,
-      productPrice: 55.90,
-      image: '/first.jpg' 
-    },
-    {
-      id: 2,
-      storeName: '禾子先生',
-      orderState: '交易成功',
-      productName: 'B2024春季新品男士卫衣圆...',
-      productDescription: '白色；XL',
-      productNumber: 1,
-      productPrice: 88.00,
-      image: '/second.jpg'
-    },
-  ])
+  // 创建 OrderService 的实例
+  const orderService = new OrderService();
+  // 使用orderService中的getOrders()方法来获取订单数据
+  // const orderData = orderService.getOrders();
+  // 储存订单数据
+  const [orderItems, setOrderItems] = useState([])
   // 这个变量存储搜索订单输入框中输入的内容
   const [searchTerm, setSearchTerm] = useState('');
   // 钩子函数，用于页面跳转
@@ -59,7 +45,23 @@ const MallOrderManagement = () => {
   const filteredOrderItems = orderItems.filter(item =>
     item.storeName.includes(searchTerm) || item.productName.includes(searchTerm)
   );
-
+  // 页面初始化时处理数据
+  useEffect(() => {
+    const fetchData = async () => {
+      const orderData = await orderService.getOrders();
+      const mappedOrders = orderData.map(order => ({
+        id: order.id,
+        storeName: order.storeName,
+        status: order.status === 0 ? '未发货' : '已发货', // 假设0表示交易成功，1表示交易关闭
+        productName: order.productName,
+        amount: order.amount,
+        price: parseFloat(order.price.replace('￥', '')), // 转换价格为数字
+        image: order.image
+      }));
+      setOrderItems(mappedOrders);
+    };
+    fetchData();
+  }, [])
 
   return (
     <div>
@@ -73,7 +75,7 @@ const MallOrderManagement = () => {
         <Card key={item.id} style={{ width: '94%', marginLeft: '3%' }}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <p>{item.storeName}</p>
-            <p style={{ marginLeft: '50%', color: "BLUE" }}>{item.orderState}</p>
+            <p style={{ marginLeft: '50%', color: "BLUE" }}>{item.status}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <Image
@@ -82,8 +84,8 @@ const MallOrderManagement = () => {
             />
             <div>
               <p>{item.productName}</p>
-              <p style={{ color: 'gray', }}>{item.productDescription} *{item.productNumber}</p>
-              <p>实付款：￥{item.productPrice}</p>
+              <p style={{ color: 'gray', }}>*{item.amount}</p>
+              <p>实付款：￥{item.price}</p>
             </div>
           </div>
           <div style={{ marginLeft: '-7%' }}>
