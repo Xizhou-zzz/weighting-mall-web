@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Divider, Input, Card, Image, Dropdown } from "antd";
 import { LeftOutlined, SearchOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -21,80 +21,86 @@ const OrderManagementPage = () => {
       ),
     },
   ];
+  const [orderItems, setOrderItems] = useState([
+    {
+      id: 1,
+      storeName: '自由公园外贸',
+      orderState: '交易成功',
+      productName: '古着复古90S老货库存宽松廓...',
+      productDescription: '复古蓝[色差、微瑕]；M',
+      productNumber: 1,
+      productPrice: 55.90,
+      image: '/first.jpg'
+    },
+    {
+      id: 2,
+      storeName: '禾子先生',
+      orderState: '交易成功',
+      productName: 'B2024春季新品男士卫衣圆...',
+      productDescription: '白色；XL',
+      productNumber: 1,
+      productPrice: 88.00,
+      image: '/second.jpg'
+    },
+  ])
+  // 这个变量存储搜索订单输入框中输入的内容
+  const [searchTerm, setSearchTerm] = useState('');
   // 钩子函数，用于页面跳转
   const navigate = useNavigate();
   // 返回按钮的处理函数，返回个人信息页面
   const returnToPersonalInformation = () => {
     navigate('/product/personalinformation');
   }
+  // 处理搜索订单输入框中内容变化的函数
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  }
+  // 过滤后的数据
+  const filteredOrderItems = orderItems.filter(item =>
+    item.storeName.includes(searchTerm) || item.productName.includes(searchTerm)
+  );
+
+
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center", marginTop: "3%" }}>
         <Button type="default" shape="circle" icon={<LeftOutlined />} style={{ marginLeft: '2%' }} onClick={returnToPersonalInformation} />
-        <Input placeholder="搜索我的订单" prefix={<SearchOutlined />} style={{ width: '70%', marginLeft: '5%' }} />
+        <Input placeholder="搜索我的订单" prefix={<SearchOutlined />} style={{ width: '70%', marginLeft: '5%' }} value={searchTerm} onChange={handleSearchChange} />
       </div>
       <Divider />
-      <Card style={{ width: '94%', marginLeft: '3%' }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <p>自由公园外贸</p>
-          <p style={{ marginLeft: '50%', color: "BLUE" }}>交易成功</p>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Image
-            width={100}
-            src={"/first.jpg"}
-          />
-          <div>
-            <p>古着复古90S老货库存宽松廓..</p>
-            <p style={{ color: 'gray', }}>复古蓝[色差、微瑕]；M *1</p>
-            <p>实付款：￥55.90</p>
-          </div>
-        </div>
-        <div style={{ marginLeft: '-7%' }}>
-          <Dropdown
-            menu={{
-              items,
-            }}
-            arrow
-          >
-            <Button type="text" width={1} style={{ color: 'gray' }}>更多</Button>
-          </Dropdown>
-          <Button>追加评价</Button>
-          <Button>查看物流</Button>
-          <Button type="primary">再买一单</Button>
-        </div>
-      </Card>
 
-      <Card style={{ width: '94%', marginLeft: '3%', marginTop: '3%' }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <p>禾子先生</p>
-          <p style={{ marginLeft: '50%', color: "BLUE" }}>交易成功</p>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Image
-            width={100}
-            src={"/second.jpg"}
-          />
-          <div>
-            <p>B2024春季新品男士卫衣圆..</p>
-            <p style={{ color: 'gray', }}>白色；XL</p>
-            <p>实付款：￥88.00</p>
+      {filteredOrderItems.map(item => (
+        <Card key={item.id} style={{ width: '94%', marginLeft: '3%' }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <p>{item.storeName}</p>
+            <p style={{ marginLeft: '50%', color: "BLUE" }}>{item.orderState}</p>
           </div>
-        </div>
-        <div style={{ marginLeft: '-7%' }}>
-          <Dropdown
-            menu={{
-              items,
-            }}
-            arrow
-          >
-            <Button type="text" width={1} style={{ color: 'gray' }}>更多</Button>
-          </Dropdown>
-          <Button>追加评价</Button>
-          <Button>查看物流</Button>
-          <Button type="primary">再买一单</Button>
-        </div>
-      </Card>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Image
+              width={100}
+              src={item.image}
+            />
+            <div>
+              <p>{item.productName}</p>
+              <p style={{ color: 'gray', }}>{item.productDescription} *{item.productNumber}</p>
+              <p>实付款：￥{item.productPrice}</p>
+            </div>
+          </div>
+          <div style={{ marginLeft: '-7%' }}>
+            <Dropdown
+              menu={{
+                items,
+              }}
+              arrow
+            >
+              <Button type="text" width={1} style={{ color: 'gray' }}>更多</Button>
+            </Dropdown>
+            <Button>追加评价</Button>
+            <Button>查看物流</Button>
+            <Button type="primary">再买一单</Button>
+          </div>
+        </Card>
+      ))}
     </div>
   );
 };

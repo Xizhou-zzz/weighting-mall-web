@@ -29,6 +29,12 @@ const ShoppingCartPage = () => {
       icon: <UserOutlined />,
     },
   ];
+  // 处理菜单点击事件,首页和分类页面同理
+  const onMenuClick = (e) => {
+    if (e.key === 'personalinformation') {
+      navigate('/product/personalinformation');
+    }
+  };
   // 定义购物车项的数据
   const [cartItems, setCartItems] = useState([
     {
@@ -120,7 +126,7 @@ const ShoppingCartPage = () => {
         </Card>
 
       </div>
-      <Menu items={menuItems} defaultSelectedKeys={['shoppingcart']} mode="horizontal" className="bottom-menu" />
+      <Menu items={menuItems} defaultSelectedKeys={['shoppingcart']} mode="horizontal" className="bottom-menu" onClick={onMenuClick} />
 
     </div>
   );

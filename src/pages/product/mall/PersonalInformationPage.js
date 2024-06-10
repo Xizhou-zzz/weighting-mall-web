@@ -28,6 +28,12 @@ const PersonalInformationPage = () => {
       icon: <UserOutlined />,
     },
   ];
+  // 处理菜单点击事件,首页和分类页面同理
+  const onMenuClick = (e) => {
+    if (e.key === 'shoppingcart') {
+      navigate('/product/shoppingcart');
+    }
+  };
   // 钩子函数，用于页面跳转
   const navigate = useNavigate();
   // 点击我的订单跳转到订单管理页面
@@ -122,7 +128,7 @@ const PersonalInformationPage = () => {
         </Card>
       </div>
 
-      <Menu items={menuItems} defaultSelectedKeys={['personalinformation']} mode="horizontal" className="bottom-menu" />
+      <Menu items={menuItems} defaultSelectedKeys={['personalinformation']} mode="horizontal" className="bottom-menu" onClick={onMenuClick} />
     </div>
   );
 };
