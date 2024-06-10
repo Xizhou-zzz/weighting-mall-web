@@ -40,8 +40,7 @@ class OrderService  {
     addNewOrder (newOrder) { 
         const id = this.orderList.length > 0 ? this.orderList[this.orderList.length - 1].id + 1 : 1;
         const orderNumber = new Date().toISOString().replace(/[-T:]/g, '').split('.')[0];
-        const price = `￥${newOrder.price}`;  
-        const order = { ...newOrder, id, orderNumber, price };
+        const order = { ...newOrder, id, orderNumber };
         this.addOrder(order);
         return order;
     } 

@@ -12,23 +12,30 @@ const LoginPage = () => {
   const onFinish = (values) => {
     try {
         const user = userService.login(
-        values.username,
-        values.password,
-        values.remember
+            values.username,
+            values.password,
+            values.remember
         );
         if (user) {
+            const currentUser = userService.getCurrentUser();
             message.open({
                 type: "success",
                 content: "登录成功",
             });
             setTimeout(() => {
-                navigate("/main");
+                
+                if (currentUser.role.includes(4)) {
+                    // 跳转至其他界面
+                    navigate("/mall/mallhome");
+                } else {
+                    navigate("/main");
+                }
             }, 1000);
         } else {
-        message.open({
-            type: "error",
-            content: "登录失败",
-        });
+            message.open({
+                type: "error",
+                content: "登录失败",
+            });
         } 
     } catch (error) {
         console.error("登录出错: ", error);
@@ -112,9 +119,8 @@ const LoginPage = () => {
                 </Space>
             </Row>
         </Form.Item>
-        <Alert message="管理员admin;密码123456" type="info" style={{marginBottom: 32, textAlign: "center"}}/>
-        <Alert message="商品管理员storeKeeper;密码123456" type="info" style={{marginBottom: 32, textAlign: "center"}}/>
-        <Alert message="订单管理员order;密码123456" type="info" style={{marginBottom: 32, textAlign: "center"}}/>
+        <Alert message="后台管理员admin;密码123456" type="info" style={{marginBottom: 32, textAlign: "center"}}/>
+        <Alert message="产品用户Customer1;密码Customer1" type="info" style={{marginBottom: 32, textAlign: "center"}}/>
     </Form>
   );
 };
