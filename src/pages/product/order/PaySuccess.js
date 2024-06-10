@@ -8,7 +8,7 @@ const PaySuccess = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const searchParams = new URLSearchParams();
+    const searchParams = new URLSearchParams(location.search);
     const price = searchParams.get('price'); 
     const toSubmitOrder = () => {
         navigate(`/product/submitOrder?price=${price}`);

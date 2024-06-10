@@ -1,14 +1,22 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { Button } from 'antd';
 import { LeftOutlined, CheckCircleOutlined } from '@ant-design/icons';
 
 /* #5 */
 const SubmitOrder = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const searchParams = new URLSearchParams(location.search);
+    const price = searchParams.get('price');
     const toPay = () => {
-        navigate('/product/pay');
+        navigate(`/product/pay?price=${price}`);
     };
+
+    const tomall = () => {
+        navigate('/mall/mallHome')
+    }
 
     const toDetail = () => {
         // 获取参数
@@ -24,7 +32,7 @@ const SubmitOrder = () => {
         <div>
             {/* 第一行：支付成功 */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span>实付数￥2799</span>
+                <span>实付数￥{price}</span>
                 <Button style={{ height: '40px', backgroundColor: 'red', color: 'white' }} onClick={toPay}>提交订单</Button>
             </div>
             {/* 第二行：返回图标 */}
@@ -51,7 +59,7 @@ const SubmitOrder = () => {
                 </div>
 
                 <div style={{ marginBottom: '10px' }}>
-                    <Button block style={{ height: '40px' }} >返回首页</Button>
+                    <Button block style={{ height: '40px' }} onClick={tomall}>返回首页</Button>
                 </div>
 
             </div>
