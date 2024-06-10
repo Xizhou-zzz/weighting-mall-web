@@ -11,7 +11,13 @@ const SubmitOrder = () => {
     };
 
     const toDetail = () => {
-        navigate('/product/OrderDetail');
+        // 获取参数
+        const productInfo = JSON.parse(localStorage.getItem('tempProductInfo'));
+        // 在跳转链接中传递参数
+        window.location.href = `/product/OrderDetail?productInfo=${encodeURIComponent(JSON.stringify(productInfo))}`;
+        console.log("productInfo");
+        console.log(productInfo);
+
     };
 
     return (

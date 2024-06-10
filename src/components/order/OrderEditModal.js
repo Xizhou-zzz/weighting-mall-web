@@ -7,7 +7,7 @@ const OrderEditModal = ({ open, onCreate, onCancel, initialValues }) => {
     const orderService = new OrderService();  // 创建 OrderService 的实例
 
     const handleCreate = (values) => { 
-        values.status = values.status ? 1 : 0;
+        values.status = values.status ? 0 : 1;
         const newOrder = orderService.addNewOrder(values);
         onCreate(newOrder);
         form.resetFields();
@@ -48,8 +48,22 @@ const OrderEditModal = ({ open, onCreate, onCancel, initialValues }) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
+                    name="storeName"
+                    label="商品厂商"
+                    rules={[{ required: true, message: 'Please input the storeName!' }]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     name="price"
                     label="金额"
+                    rules={[{ required: true, message: 'Please input the price!' }]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    name="amount"
+                    label="数量"
                     rules={[{ required: true, message: 'Please input the amount!' }]}
                 >
                     <Input />

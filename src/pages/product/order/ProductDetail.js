@@ -153,18 +153,19 @@ const ProductDetail = () => {
     const handleBuyNow = () => {
         setIsBuying(true);
         setIsDrawerVisible(true);
-    };
-
+    };  
+    
     const handleOk = () => {
         if (selectedColor) {
             if (isBuying) {
                 // 跳转到创建订单界面，并传递商品信息和选定颜色
                 // 使用 Link 组件传递数据
                 const productInfo = { product: product, selectedColor: selectedColor };
+                // 设置参数到 Local Storage
+                localStorage.setItem('tempProductInfo', JSON.stringify(productInfo));
                 // 使用 window.location.href 跳转，并将商品信息和选定颜色编码为 URL 参数
                 window.location.href = `/product/CreateOrder?productInfo=${encodeURIComponent(JSON.stringify(productInfo))}`;
                 //navigate("/CreateOrder", { state: { productInfo } });
-
             } else {
                 // 提示成功添加至购物车
                 message.success("成功添加至购物车");

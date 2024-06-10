@@ -23,14 +23,14 @@ const MallOrderManagement = () => {
   ];
   const [orderItems] = useState([
     {
-      id: 1,
+      id: 1,                      
       storeName: '自由公园外贸',
       orderState: '交易成功',
       productName: '古着复古90S老货库存宽松廓...',
       productDescription: '复古蓝[色差、微瑕]；M',
       productNumber: 1,
       productPrice: 55.90,
-      image: '/first.jpg'
+      image: '/first.jpg' 
     },
     {
       id: 2,

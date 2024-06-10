@@ -5,18 +5,22 @@ const defaultOrderList = [
       productName: '华为 HUAWEI P20',
       orderNumber: '20240608114514',
       customerName: 'Customer1',
-      date: '2024-6-11',
-      price: '￥4899',
-      status: 0
+      price: '￥4899.00',
+      amount: 2,
+      status: 0,
+      storeName: 'HUAWEI 华为',
+      image: '/product1.png' 
   },
   {
       id: 2,
-      productName: 'HLA海澜之家简约动物印花短袖T恤',
+      productName: 'B2024春季新品男士卫衣',
       orderNumber: '20240610114514',
       customerName: 'Customer1',
-      date: '2024-6-10',
-      price: '￥489',
-      status: 1
+      price: '￥88.00',
+      storeName: '禾子先生',
+      status: 1,
+      amount: 1,
+      image: '/second.jpg'
   }
 ];
 

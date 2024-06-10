@@ -12,6 +12,7 @@ const OrderPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
+        localStorage.clear();
         setOrders(order.getOrders());
     }, [order]);
 
@@ -67,6 +68,11 @@ const OrderPage = () => {
             key: 'productName',
         },
         {
+            title: '产品厂商',
+            dataIndex: 'storeName',
+            key: 'storeName',
+        },
+        {
             title: '顾客用户名',
             dataIndex: 'customerName',
             key: 'customerName',
@@ -75,6 +81,17 @@ const OrderPage = () => {
             title: '金额',
             dataIndex: 'price',
             key: 'price',
+        },
+        {
+            title: '数量',
+            dataIndex: 'amount',
+            key: 'amount',
+        },
+        {
+            title: '商品图片',
+            dataIndex: 'image',
+            key: 'image',
+            render: (image) => <img src={image} alt="商品图片" style={{ width: '50px', height: '50px' }} />,
         },
         {
             title: '状态',
