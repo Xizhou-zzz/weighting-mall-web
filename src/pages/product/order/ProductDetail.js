@@ -155,8 +155,8 @@ const ProductDetail = () => {
     const handleBuyNow = () => {
         setIsBuying(true);
         setIsDrawerVisible(true);
-    };  
-    
+    };
+
     const handleOk = () => {
         if (selectedColor) {
             if (isBuying) {
@@ -240,11 +240,11 @@ const ProductDetail = () => {
                 </div>
             </ProductInfo>
             <ProductButtons>
-                <IconButton onClick={() => window.location.href = '/main/home'}>
+                <IconButton onClick={() => window.location.href = '/mall/mallHome'}>
                     <HomeOutlined />
                     <div style={{ fontSize: 12 }}>首页</div>
                 </IconButton>
-                <IconButton onClick={() => window.location.href = '/product/shoppingcart'}>
+                <IconButton onClick={() => window.location.href = '/mall/mallShoppingCar'}>
                     <ShoppingCartOutlined />
                     <div style={{ fontSize: 12 }}>购物车</div>
                 </IconButton>
