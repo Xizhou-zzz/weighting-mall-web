@@ -1,0 +1,13 @@
+styled-components 包被引用
+fetch后 执行npm install
+
+目前重构了有关订单的8个页面的路由
+由/ProductDetail 更新为：/product/ProductDetail 等
+
+逻辑顺序应当为：
+ProductDetail → CreateOrder → pay → paymentMethod → paymentConfirmation
+→ paySuccess → submitOrder → OrderDetail
+
+目前存在的问题是，从ProductDetail开始的逻辑关系跳转会携带商品信息一并进入下个页面
+到达pay页面的下个页面时会丢失这个信息，并无法传达至OrderDetail导致OrderDetail页面
+无法渲染

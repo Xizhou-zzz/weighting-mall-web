@@ -76,22 +76,19 @@ const router = createBrowserRouter([
       { path: "paymentConfirmation", element: <PaymentConfirmation /> },
       { path: "paySuccess", element: <PaySuccess /> },
       { path: "submitOrder", element: <SubmitOrder /> },
-      { path: "pay", element: <Pay /> }
-
+      { path: "pay", element: <Pay /> },
+      //商品详情页页面路由
+      { path: "ProductDetail", element: <ProductDetail /> },
+      //创建订单页面路由
+      { path: "CreateOrder", element: <CreateOrder /> },
+      //订单详情页面路由
+      { path: "OrderDetail", element: <OrderDetail /> },
     ],
   },
-  //商品详情页页面路由
-  {
-    path: "ProductDetail", element: <ProductDetail />
-  },
-  //创建订单页面路由
-  {
-    path: "CreateOrder", element: <CreateOrder />
-  },
-  //订单详情页面路由
-  {
-    path: "OrderDetail", element: <OrderDetail />
-  },
+  
+
+  
+  
 ]);
 
 export default router;

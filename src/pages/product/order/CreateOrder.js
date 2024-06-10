@@ -453,7 +453,7 @@ const CreateOrderPage = () => {
         </div>
         <div>
           {/* 支付页面路由在这里添加/pay */}
-          <StyledLink to={`/pay?price=${totalPrice === 0 ? 4899 : totalPrice}`}>
+          <StyledLink to={`/product/pay?price=${totalPrice === 0 ? 4899 : totalPrice}`}>
             去支付
           </StyledLink>
         </div>

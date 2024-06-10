@@ -10,6 +10,10 @@ const SubmitOrder = () => {
         navigate('/product/pay');
     };
 
+    const toDetail = () => {
+        navigate('/product/OrderDetail');
+    };
+
     return (
         <div>
             {/* 第一行：支付成功 */}
@@ -35,7 +39,7 @@ const SubmitOrder = () => {
                 </div>
 
                 <div style={{ marginBottom: '10px' }}>
-                    <Button block style={{ height: '40px', backgroundColor: 'red', color: 'white' }}>
+                    <Button block style={{ height: '40px', backgroundColor: 'red', color: 'white' }} onClick={toDetail}>
                         查看订单
                     </Button>
                 </div>

@@ -162,7 +162,7 @@ const ProductDetail = () => {
                 // 使用 Link 组件传递数据
                 const productInfo = { product: product, selectedColor: selectedColor };
                 // 使用 window.location.href 跳转，并将商品信息和选定颜色编码为 URL 参数
-                window.location.href = `/CreateOrder?productInfo=${encodeURIComponent(JSON.stringify(productInfo))}`;
+                window.location.href = `/product/CreateOrder?productInfo=${encodeURIComponent(JSON.stringify(productInfo))}`;
                 //navigate("/CreateOrder", { state: { productInfo } });
 
             } else {
