@@ -6,7 +6,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const goToMall = () => {
-    navigate("/ProductDetail");
+    navigate("/mall/mallHome");
   };
 
 
