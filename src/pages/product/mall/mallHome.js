@@ -119,11 +119,19 @@ const MallHome = () => {
                     <br />
                     <div className="menu-container" >
                         {seckillItems.slice(0, 4).map((item, index) => (
-                            <div key={index} className="menu-item" onClick={() => navigate('/productDetail/' + item.id)}>
-                                <img src={item.src} alt={item.name} className="menu-item-image" />
-                                <span className="menu-item-name">{item.name.substring(0, 10) + "..."}</span>
-                                <span className="menu-item-price" style={{ fontSize: 17, color: '#c91515' }}>{"￥" + item.price}</span>
-                            </div>
+                            item.id === 0 ? (
+                                <div key={index} className="menu-item" onClick={() => navigate('/product/ProductDetail')}>
+                                    <img src={item.src} alt={item.name} className="menu-item-image" />
+                                    <span className="menu-item-name">{item.name.substring(0, 10) + "..."}</span>
+                                    <span className="menu-item-price" style={{ fontSize: 17, color: '#c91515' }}>{"￥" + item.price}</span>
+                                </div>
+                            ) : (
+                                <div key={index} className="menu-item" onClick={() => navigate('/productDetail/' + item.id)}>
+                                    <img src={item.src} alt={item.name} className="menu-item-image" />
+                                    <span className="menu-item-name">{item.name.substring(0, 10) + "..."}</span>
+                                    <span className="menu-item-price" style={{ fontSize: 17, color: '#c91515' }}>{"￥" + item.price}</span>
+                                </div>
+                            )
                         ))}
                     </div>
 

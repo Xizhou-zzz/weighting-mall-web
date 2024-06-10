@@ -358,124 +358,170 @@ const StyledLink = styled(Link)`
 `;
 
 const OrderDetailPage = () => {
-    const location = useLocation();
-    const [product, setProduct] = useState(null);
-    const [selectedColor, setSelectedColor] = useState(null);
+  const location = useLocation();
+  // const [product, setProduct] = useState(null);
+  // const [selectedColor, setSelectedColor] = useState(null);
+  // const [selectedItems, setSelectedItems] = useState(null);
+  let product;
+  let selectedColor;
+  let selectedItems;
 
-    useEffect(() => {
-        const searchParams = new URLSearchParams(location.search);
-        const productInfo = searchParams.get("productInfo");
+  //  useEffect(() => {
+  const productInfo = JSON.parse(localStorage.getItem('tempProductInfo'));
+  console.log("productInfo", productInfo);
+  //if (productInfo.product) setProduct(productInfo.product);
+  //if (productInfo.selectedColor.target.value) setSelectedColor(productInfo.selectedColor.target.value);
+  //if (productInfo.selectedItems) setSelectedItems(productInfo.selectedItems);
+  if (productInfo.product) product = productInfo.product;
+  if (productInfo.selectedColor) selectedColor = productInfo.selectedColor;
+  if (productInfo.selectedItems) selectedItems = productInfo.selectedItems;
 
-        if (productInfo) {
-            const parsedProductInfo = JSON.parse(decodeURIComponent(productInfo));
-            // console.log(parsedProductInfo);
-            setProduct(parsedProductInfo.product);
-            setSelectedColor(parsedProductInfo.selectedColor.target.value);
-        }
-    }, [location.search]);
+  console.log("product:", product, "selectedColor:", selectedColor, "selectedItems:", selectedItems);
+  // }, []);
 
-    if (!product) {
-        return null;
-    }
+  // useEffect(() => {
+  //   const searchParams = new URLSearchParams(location.search);
+  //   const productInfo = searchParams.get("productInfo");
 
-    const handleBack = () => {
-        // 返回上一页
-        window.history.back();
-    };
+  //   if (productInfo) {
+  //     const parsedProductInfo = JSON.parse(decodeURIComponent(productInfo));
+  //     // console.log(parsedProductInfo);
+  //     setProduct(parsedProductInfo.product);
+  //     setSelectedColor(parsedProductInfo.selectedColor.target.value);
+  //   }
+  // }, [location.search]);
 
-    return (
-        <>
-            <CreateOrderContainer>
-                <Header>
-                    <ArrowLeftOutlined style={{ fontSize: "24px", cursor: "pointer" }} onClick={handleBack} />
-                    <Title>订单详情</Title>
-                    <div style={{ width: "24px" }}></div>
-                </Header>
-                <OrderMsgPanel>
-                    <div className="login">
-                        <span><TruckOutlined style={{ color: "white", fontSize: "25px" }} /></span>
-                    </div>
-                    <div className="usr">
-                        <div className="top">
-                            <h5>等待发货</h5>
+  // if (!product) {
+  //     return null;
+  // }
 
-                        </div>
+  const handleBack = () => {
+    // 返回上一页
+    window.history.back();
+  };
 
-                    </div>
+  const totalPrice = selectedItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-                </OrderMsgPanel>
-                <UserMsgPanel>
-                    <div className="login">
-                        <span><EnvironmentFilled style={{ color: "white" }} /></span>
-                    </div>
-                    <div className="usr">
-                        <div className="top">
-                            <span>aaa</span>
-                            <br></br>
-                            <span>12345678910</span>
-                        </div>
-                        <div className="bottom">
-                            <span>天堂</span>
-                        </div>
-                    </div>
+  return (
+    <>
+      <CreateOrderContainer>
+        <Header>
+          <ArrowLeftOutlined style={{ fontSize: "24px", cursor: "pointer" }} onClick={handleBack} />
+          <Title>订单详情</Title>
+          <div style={{ width: "24px" }}></div>
+        </Header>
+        <OrderMsgPanel>
+          <div className="login">
+            <span><TruckOutlined style={{ color: "white", fontSize: "25px" }} /></span>
+          </div>
+          <div className="usr">
+            <div className="top">
+              <h5>等待发货</h5>
 
-                </UserMsgPanel>
+            </div>
 
-                <GoodsPanel>
-                    <div className="pic">
-                        <a href="#">
-                            <img src={product.images[selectedColor]} alt="商品图片" />
-                            {/* <img src="https://picture.gptkong.com/20240609/21538fd7470cc14ab8b22cd7718499ab5e.jpg" alt="商品图片" /> */}
-                        </a>
-                    </div>
-                    <div className="info">
-                        <div className="top">{product.name}</div>
-                        <div className="center">{selectedColor}</div>
-                        <div className="bottom">
-                            <span className="red"><i>{product.price}</i></span>
-                            <del>{product.originalPrice}</del>
-                        </div>
-                    </div>
-                    <div className="count">
-                        {/* <span>x<i>{product.quantity}</i></span> */}
-                        <span>x 1</span>
-                    </div>
-                </GoodsPanel>
+          </div>
 
-                <RestPanel>
-                    <div className="common_rest">
-                        <h5>总优惠</h5>
-                        <span className="red">-￥1100</span>
-                    </div>
-                    <div className="common_rest">
-                        <h5>配送方式</h5>
-                        <span>顺丰快递</span>
-                    </div>
-                    <div className="common_rest">
-                        <h5>订单编号</h5>
-                        <span>23432924315890923832</span>
-                    </div>
-                    <div className="common_rest">
-                        <h5>提交时间</h5>
-                        <span>2024-6-1 13:28:00</span>
-                    </div>
-                    <div className="common_rest">
-                        <h5>支付方式</h5>
-                        <span>支付宝支付</span>
-                    </div>
-                </RestPanel>
+        </OrderMsgPanel>
+        <UserMsgPanel>
+          <div className="login">
+            <span><EnvironmentFilled style={{ color: "white" }} /></span>
+          </div>
+          <div className="usr">
+            <div className="top">
+              <span>aaa</span>
+              <br></br>
+              <span>12345678910</span>
+            </div>
+            <div className="bottom">
+              <span>天堂</span>
+            </div>
+          </div>
 
-                <PricePanel>
-                    <div className="common_rest">
-                        <h5>商品总计</h5>
-                        <span className="red"><i>{product.price}</i></span>
-                    </div>
-                </PricePanel>
-            </CreateOrderContainer>
+        </UserMsgPanel>
+
+        {selectedItems.length > 0 ? (
+          selectedItems.map(product => (
+            <GoodsPanel key={product.id}>
+              <div className="pic">
+                <a href="#">
+                  {/* <img src={product.images[selectedColor]} alt="商品图片" /> */}
+                  <img src={product.image} alt="商品图片" />
+                </a>
+              </div>
+              <div className="info">
+                <div className="top">{product.name}</div>
+                {/* <div className="center">{selectedColor}</div> */}
+                <div className="center">{product.description}</div>
+                <div className="bottom">
+                  <span className="red"><i>￥{product.price}</i></span>
+                  <del>{product.originalPrice}</del>
+                </div>
+              </div>
+              <div className="count">
+                <span>x{product.quantity}</span>
+                {/* <span>x 1</span> */}
+              </div>
+            </GoodsPanel>
+          ))
+        ) : (
+          <GoodsPanel >
+            <div className="pic">
+              <a href="#">
+                <img src={product.images[selectedColor]} alt="商品图片" />
+                {/* <img src={product.image} alt="商品图片" /> */}
+              </a>
+            </div>
+            <div className="info">
+              <div className="top">{product.name}</div>
+              <div className="center">{selectedColor}</div>
+              {/* <div className="center">{product.description}</div> */}
+              <div className="bottom">
+                <span className="red"><i>{product.price}</i></span>
+                <del>{product.originalPrice}</del>
+              </div>
+            </div>
+            <div className="count">
+              {/* <span>x{product.quantity}</span> */}
+              <span>x 1</span>
+            </div>
+          </GoodsPanel>
+        )}
+
+        <RestPanel>
+          <div className="common_rest">
+            <h5>总优惠</h5>
+            <span className="red">-￥1100</span>
+          </div>
+          <div className="common_rest">
+            <h5>配送方式</h5>
+            <span>顺丰快递</span>
+          </div>
+          <div className="common_rest">
+            <h5>订单编号</h5>
+            <span>23432924315890923832</span>
+          </div>
+          <div className="common_rest">
+            <h5>提交时间</h5>
+            <span>2024-6-1 13:28:00</span>
+          </div>
+          <div className="common_rest">
+            <h5>支付方式</h5>
+            <span>支付宝支付</span>
+          </div>
+        </RestPanel>
+
+        <PricePanel>
+          <div className="common_rest">
+            <h5>商品总计</h5>
+            <span className="red"><i>￥{totalPrice === 0 ? 4899 : totalPrice}</i></span>
+          </div>
+        </PricePanel>
+      </CreateOrderContainer>
 
 
-        </>
-    );
+    </>
+  );
 };
 
 export default OrderDetailPage;

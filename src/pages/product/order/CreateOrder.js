@@ -325,7 +325,7 @@ const CreateOrderPage = () => {
 
   if (productInfo) {
     const parsedProductInfo = JSON.parse(decodeURIComponent(productInfo));
-    console.log(parsedProductInfo);
+    console.log("parsedProductInfo:", parsedProductInfo);
     // setProduct(parsedProductInfo.product);
     // setSelectedColor(parsedProductInfo.selectedColor.target.value);
     product = parsedProductInfo.product;
@@ -349,6 +349,16 @@ const CreateOrderPage = () => {
 
   const totalPrice = selectedItems.reduce((total, item) => total + item.price * item.quantity, 0);
   // console.log(totalPrice);
+
+  //点击支付按钮时将商品信息存入localStorage
+  const handlePayClick = () => {
+    const productInfo = {
+      product,//点击立即购买时的参数
+      selectedColor,//点击立即购买时的参数
+      selectedItems//购物车商品参数，前两者或这个有一方为null
+    };
+    localStorage.setItem('tempProductInfo', JSON.stringify(productInfo));
+  };
 
 
   return (
@@ -453,7 +463,7 @@ const CreateOrderPage = () => {
         </div>
         <div>
           {/* 支付页面路由在这里添加/pay */}
-          <StyledLink to={`/product/pay?price=${totalPrice === 0 ? 4899 : totalPrice}`}>
+          <StyledLink to={`/product/pay?price=${totalPrice === 0 ? 4899 : totalPrice}`} onClick={handlePayClick}>
             去支付
           </StyledLink>
         </div>

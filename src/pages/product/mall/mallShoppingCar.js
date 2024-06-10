@@ -64,7 +64,7 @@ const MallShoppingCar = () => {
     // 去结算按钮的函数
     const goToCheckout = () => {
         const selectedItems = cartItems.filter(item => item.isChecked);
-        navigate("/CreateOrder", { state: { selectedItems } });
+        navigate("/product/CreateOrder", { state: { selectedItems } });
         // navigate("/CreateOrder");
     };
     return (
