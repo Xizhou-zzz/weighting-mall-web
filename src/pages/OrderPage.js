@@ -39,7 +39,28 @@ const OrderPage = () => {
         setOrders(order.getOrders());
     };
 
+    const handleShip = (id) => {
+        order.handleShip(id);
+        const updatedOrders = orders.map(order => {
+            if (order.id === id) {
+                return { ...order, status: 1 };
+            }
+            return order;
+        });
+        setOrders(updatedOrders);
+    }
+
     const columns = [
+        {
+            title: '编号',
+            dataIndex: 'id',
+            key: 'id',
+        },
+        {
+            title: '订单编号',
+            dataIndex: 'orderNumber',
+            key: 'orderNumber',
+        },
         {
             title: '商品名',
             dataIndex: 'productName',
@@ -51,32 +72,42 @@ const OrderPage = () => {
             key: 'customerName',
         },
         {
-            title: '数量',
-            dataIndex: 'amount',
-            key: 'amount',
+            title: '金额',
+            dataIndex: 'price',
+            key: 'price',
         },
         {
             title: '状态',
             dataIndex: 'status',
             key: 'status',
+            render: (status) => (status === 1 ? '已发货' : '未发货'),
         },
         {
             title: '操作',
             key: 'actions',
-            render: (_, record) => (
-                <Space size="middle">
-                    <Button onClick={() => { setEditEntity(record); setEditModalOpen(true); }}>编辑</Button>
-                    <Button onClick={() => onDelete(record.id)}>删除</Button>
-                </Space>
-            ),
+            render: (_, record) => {
+                if (record.status ===  0) {
+                    return (
+                        <Space size="middle">
+                            <Button type="primary" onClick={() => handleShip(record.id)}>点击发货</Button>
+                            <Button onClick={() => onDelete(record.id)}>删除</Button>
+                        </Space>
+                    );
+                } else if (record.status ===  1) {
+                    return (
+                        <Space size="middle">
+                            <Button disabled>完成发货</Button>
+                            <Button onClick={() => onDelete(record.id)}>删除</Button>
+                        </Space>
+                    );
+                }
+            }
         },
     ];
 
     const filteredOrders = orders.filter(order => 
         order.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        order.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        String(order.amount).includes(searchTerm) ||
-        order.status.toLowerCase().includes(searchTerm.toLowerCase())
+        order.customerName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (

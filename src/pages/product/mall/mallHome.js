@@ -4,12 +4,12 @@ import carousel1 from "../../../service/images/carousel1.png"
 import carousel2 from "../../../service/images/carousel2.png"
 import carousel3 from "../../../service/images/carousel3.png"
 import carousel4 from "../../../service/images/carousel4.png"
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Layout, Input, Carousel } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { FireTwoTone, LikeTwoTone, RightOutlined, TrophyTwoTone } from "@ant-design/icons";
 import { ServiceContext } from "../../../contexts/ServiceContext";
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content } = Layout;
 const { Search } = Input;
 
 const contentStyle = {
@@ -46,13 +46,13 @@ const MallHome = () => {
 
     const handleSeckillListClick = () => {
 
-        navigate("/mall/productList/" + "1"); //跳转到相应页面
+        navigate("/mall/productList/1"); //跳转到相应页面
 
     };
 
     const handleRecommendListClick = () => {
 
-        navigate("/mall/productList/" + "2"); //跳转到相应页面
+        navigate("/mall/productList/2"); //跳转到相应页面
 
     };
 

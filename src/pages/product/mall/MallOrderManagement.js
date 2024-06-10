@@ -21,7 +21,7 @@ const MallOrderManagement = () => {
       ),
     },
   ];
-  const [orderItems, setOrderItems] = useState([
+  const [orderItems] = useState([
     {
       id: 1,
       storeName: '自由公园外贸',

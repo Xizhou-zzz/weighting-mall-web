@@ -1,9 +1,9 @@
 //商城的根目录 //by ly
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import React, { useContext, useEffect } from 'react';
+import  { React } from 'react';
 import { MenuOutlined, UserOutlined, HomeOutlined, ShoppingCartOutlined, } from '@ant-design/icons';
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer } = Layout;
 
 let menuItem = [
     {

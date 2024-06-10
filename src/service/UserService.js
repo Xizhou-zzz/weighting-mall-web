@@ -28,9 +28,9 @@ const defaultUserList = [
     },
     {
       id: 4,
-      username: "customer1",
+      username: "Customer1",
       email: "customer1@bjtu.com",
-      password: "Xz123456",
+      password: "Customer1",
       name: "customer1",
       role: [4],
       enable: true,

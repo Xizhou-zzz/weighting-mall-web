@@ -1,10 +1,10 @@
 //by ly 好像写重了。我的是活得，可能需要修改。
-import {Outlet, useNavigate, useParams} from 'react-router-dom';
-import {Button, Layout, Menu} from 'antd';
+import { useNavigate, useParams} from 'react-router-dom';
+import {Button, Layout } from 'antd';
 import React, {useContext, useEffect, useState} from 'react';
 import {ServiceContext} from "../../../contexts/ServiceContext";
-import {HeartOutlined, HomeOutlined, LeftOutlined, ShoppingCartOutlined} from "@ant-design/icons";
-const { Header, Content, Footer, Sider } = Layout;
+import { HomeOutlined, LeftOutlined, ShoppingCartOutlined} from "@ant-design/icons";
+const { Content } = Layout;
 
 const ProductDetail = () => {
 

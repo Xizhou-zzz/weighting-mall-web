@@ -3,7 +3,7 @@ import { Outlet ,useNavigate} from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import React, {useContext, useEffect, useState} from 'react';
 import {ServiceContext} from "../../../contexts/ServiceContext";
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const MallGenre = () => {
 

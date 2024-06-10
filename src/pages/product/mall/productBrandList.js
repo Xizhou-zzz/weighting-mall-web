@@ -1,11 +1,11 @@
 //by ly
 import './brandList.css'
-import {Outlet, useNavigate, useParams} from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { useNavigate, useParams} from 'react-router-dom';
+import { Layout } from 'antd';
 import React, {useContext, useEffect, useState} from 'react';
 import {ServiceContext} from "../../../contexts/ServiceContext";
 import {LeftOutlined} from "@ant-design/icons";
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content } = Layout;
 
 const ProductBrandList = () => {
     const { id } = useParams();
