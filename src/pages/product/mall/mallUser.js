@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, Button, Avatar, Divider } from "antd";
-import { MessageOutlined, SettingOutlined, ProfileOutlined, MoneyCollectOutlined, TruckOutlined, TransactionOutlined, EnvironmentOutlined, RightOutlined, HeartOutlined, StarOutlined, CommentOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { Card, Button, Avatar, Divider, Tooltip } from "antd";
+import { MessageOutlined, SettingOutlined, ProfileOutlined, MoneyCollectOutlined, TruckOutlined, TransactionOutlined, EnvironmentOutlined, RightOutlined, HeartOutlined, StarOutlined, CommentOutlined, ClockCircleOutlined, LeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 const MallUser = () => {
@@ -11,11 +11,18 @@ const MallUser = () => {
   const toOrderManagement = () => {
     navigate('/mall/mallOrderManagement');
   }
+  // 点击按钮跳转回登录页面
+  const toLogin = () => {
+    navigate('/main');
+  }
 
   return (
     <div className="shopping-cart-page">
       <div className="content">
         <div className="buttonPosition">
+          <Tooltip title="退出登录">
+            <Button type="link" icon={<LeftOutlined />} onClick={toLogin}></Button>
+          </Tooltip>
           <Button type="link" icon={<MessageOutlined />}></Button>
           <Button type="link" icon={<SettingOutlined />}></Button>
         </div>
