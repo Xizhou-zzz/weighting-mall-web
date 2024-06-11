@@ -177,7 +177,7 @@ const ProductDetail = () => {
                     amount: 1,
                     status: 0,
                     storeName: 'Apple Store',
-                    image: product.images[selectedColor],
+                    image: '/iphone.png',
                     selectedColor,
                 };
                 const order = orderService.addNewOrder(newOrder);

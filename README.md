@@ -1,6 +1,6 @@
-# XZ-MALL-WEB
+# Weighiting-MALL-WEB
 
-**21301019-王彦博**
+
 
 ## 项目结构
 
@@ -126,128 +126,8 @@
 
 使用`localStorage`来存储数据，编辑数据可被在浏览器缓存中长时间保存
 
-若需要每次刷新启动恢复原始数据，将`index.js`中`// localStorage.clear();` 取消注释
+若需要每次刷新启动恢复原始数据，将`MainPage.js`中`// localStorage.clear();` 取消注释
 
 这样每次启动时会清除缓存，各个service在读到空数据后会设定`default`数据
 
-
-
-默认进入localhost:3000/main/home
-
-![image-20240602184415256](README.assets/image-20240602184415256.png)
-
-点击左上方“登录状态”按钮，发现未登录状态，点击“登录”进入登录界面/login
-
-![image-20240602184524172](README.assets/image-20240602184524172.png)
-
-点击注册，进入注册界面/register
-
-![image-20240602184635250](README.assets/image-20240602184635250.png)
-
-注册会校验邮箱、密码格式，同时查询用户名是否存在，不可重名
-
-![image-20240602184721740](README.assets/image-20240602184721740.png)
-
-注册界面 `RegisterPage.js` 中包含方法`isPasswordValid(password)`校验密码是否符合要求
-
-```js
-const isPasswordValid = (password) => {
-    // 正则表达式，校验密码是否包含大小写字母和数字，且长度在8到16位之间
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
-  
-    // 使用正则表达式测试密码是否符合要求
-    return passwordRegex.test(password);
-  };
-```
-
-回到登录，使用管理员admin账号密码登录
-
-![image-20240602185327053](README.assets/image-20240602185327053.png)
-
-![image-20240602185331563](README.assets/image-20240602185331563.png)
-
-![image-20240602185337183](README.assets/image-20240602185337183.png)
-
-点击各个按钮进入编辑操作
-
-### 数据属性说明
-
-1.菜单管理
-
-```js
-以首页和用户列表为例
-	{
-      id: 1,				// 菜单的序号
-      name: "首页",			// 菜单的显示名称
-      path: "home",			// 进入该菜单跳转的页面路由
-      parent: 0,			// 父类菜单，无父类则为0
-      enable: true,  		// 定义可见属性，默认可见，根据用户权限设置不同id菜单该属性不可见
-    },
-    {
-      id: 6,
-      name: "用户列表",
-      path: "user",
-      parent: 5,		// 父类菜单，父类是id为5的菜单
-      enable: true,
-      locked: true,
-    },    
-```
-
-2.角色管理
-
-```js
-以管理员和商品管理员为例	
-	{
-      id: 1,						// 用户编号
-      username: "admin",			// 用户名，登录标志
-      email: "admin@bjtu.com",		// 用户邮箱
-      password: "123456",			// 用户密码
-      name: "管理员",					// 用户昵称
-      role: [1],					// 用户权限等级，分为1-4级，下面“3.权限管理”会说明
-      enable: true,					// 定义可用属性，默认不停用
-    },
-    {
-      id: 2,
-      username: "storeKeeper",
-      email: "store@bjtu.com",
-      password: "123456",
-      name: "商品管理员",
-      role: [2],
-      enable: true,
-    },
-新添加的用户默认无权限等级，需要进行分配
-```
-
-3.权限管理
-
-```js
-	{
-      id: 1,
-      name: "管理员",
-      desc: "拥有所有功能",
-      menu: ["*"],			// 表示能查看的菜单id，“*”为全部
-      enable: true,
-    },
-    {
-      id: 2,
-      name: "商品管理员",
-      desc: "只能查看商品和营销",
-      menu: [1, 2, 4],
-      enable: true,
-    },
-    {
-      id: 3,
-      name: "订单管理员",
-      desc: "只能查看订单",
-      menu: [1, 2],
-      enable: true,
-    },
-    {
-      id: 4,
-      name: "一般用户",
-      desc: "只能查看首页",
-      menu: [1],
-      enable: true,
-    },
-```
 
