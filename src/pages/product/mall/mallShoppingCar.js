@@ -1,14 +1,16 @@
 //商城的购物车浅浅浅写一下by ly, 只是测试可以删掉
 
 // 修改后的购物车页面
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Button, Image, InputNumber, Checkbox } from "antd";
 import { DeleteOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './style.css';
 const MallShoppingCar = () => {
     // 钩子函数，用于页面跳转
     const navigate = useNavigate();
+    // 获取页面传递来的数据
+    const location = useLocation();
     // 定义购物车项的数据
     const [cartItems, setCartItems] = useState([
         {
@@ -29,17 +31,26 @@ const MallShoppingCar = () => {
             image: '/secondshoe.jpg',
             isChecked: true,
         },
-        {
-            id: 3,
-            name: 'Apple/苹果 iPhone 15',
-            description: '蓝色',
-            price: 4899,
-            quantity: 1,
-            image: 'https://picture.gptkong.com/20240609/2328f4bafbade14502aa3d6f012723383c.jpg',
-            isChecked: true,
-            originalPrice: "￥5999",
-        }
     ]);
+
+    useEffect(() => {
+        if (location.state && location.state.productInfo) {
+            const { product, selectedColor } = location.state.productInfo;
+            // 创建一个新的购物车项
+            const newCartItem = {
+                id: cartItems.length + 1,
+                name: product.name,
+                description: selectedColor,
+                price: parseFloat(product.price.replace('￥', '')),
+                quantity: 1,
+                image: product.images[selectedColor] || product.defaultImage,
+                isChecked: true,
+                originalPrice: product.originalPrice,
+            };
+            // 将新购物车项添加到购物车中
+            setCartItems([...cartItems, newCartItem]);
+        }
+    }, [location.state]);
     // 删除购物车项的函数
     const deleteItem = (id) => {
         setCartItems(cartItems.filter(item => item.id !== id));

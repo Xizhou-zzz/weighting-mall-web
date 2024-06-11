@@ -21,8 +21,6 @@ const ProductImage = styled(Image)`
   object-fit: cover;
 `;
 
-
-
 const BackButton = styled.div`
   position: absolute;
   top: 10px;
@@ -122,6 +120,7 @@ const ColorOption = styled(Radio.Button)`
 `;
 
 const ProductDetail = () => {
+    // 钩子函数，用于页面跳转
     const navigate = useNavigate();
     const [isDrawerVisible, setIsDrawerVisible] = useState(false);
     const [selectedColor, setSelectedColor] = useState(null);
@@ -184,6 +183,14 @@ const ProductDetail = () => {
                 message.success("订单已创建");
 
             } else {
+                // 构建商品信息
+                const productInfo = {
+                    product: product,
+                    selectedColor: selectedColor.target.value,
+                };
+                console.log(productInfo);
+                // 将信息传到购物车页面
+                navigate('/mall/mallShoppingCar', { state: { productInfo } });
                 // 提示成功添加至购物车
                 message.success("成功添加至购物车");
             }
@@ -200,10 +207,10 @@ const ProductDetail = () => {
     const handleColorChange = (color) => {
         setSelectedColor(color);
         // 手动触发轮播图切换到对应颜色的图片
-        const index = product.colors.indexOf(color);
-        if (carouselRef.current) {
-            carouselRef.current.goTo(index);
-        }
+        // const index = product.colors.indexOf(color);
+        // if (carouselRef.current) {
+        //     carouselRef.current.goTo(index);
+        // }
     };
 
     return (
@@ -252,12 +259,13 @@ const ProductDetail = () => {
                 <ActionButton onClick={handleBuyNow}>立即购买</ActionButton>
 
             </ProductButtons>
+
             <Drawer
                 title="选择颜色"
                 placement="bottom"
                 closable={false}
                 onClose={handleCancel}
-                visible={isDrawerVisible}
+                open={isDrawerVisible}
                 height={300}
             >
                 <Radio.Group
@@ -271,6 +279,7 @@ const ProductDetail = () => {
                         </ColorOption>
                     ))}
                 </Radio.Group>
+
                 <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '16px' }}>
                     <Button type="primary" onClick={handleOk}>
                         确定
@@ -279,10 +288,10 @@ const ProductDetail = () => {
                         取消
                     </Button>
                 </div>
+
             </Drawer>
         </ProductDetailContainer>
     );
 };
 
 export default ProductDetail;
-
